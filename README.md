@@ -10,7 +10,13 @@ Here are several screenshot of the program:
 ![Apps_Preview2](app_preview/apps1a.png)
 
 3. Start Validate
-![Apps_Preview2](app_preview/apps2.png)
+![Apps_Preview3](app_preview/apps2.png)
+
+4. Annotation Found
+![Apps_Preview4](app_preview/apps_annotate.png)
+
+5. Sample Output (CSV)
+![Apps_Preview5](app_preview/apps_output.png)
 
 
 For more info and suggestion:
