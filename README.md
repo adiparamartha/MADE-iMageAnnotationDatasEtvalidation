@@ -2,7 +2,7 @@
 
 This project allow you to validate JSON data with annotation that associcated with images file that located in the same folder.
 
-Here are several screenshot of the program:\
+Here are several screenshot of the program:
 1. Home Screen\
 ![Apps_Preview1](app_preview/apps1.png)
 
@@ -20,4 +20,6 @@ Here are several screenshot of the program:\
 
 For more info and suggestion:\
 <mdparamartha95@kumoh.ac.kr> / <adi@primakara.ac.id> \
-[Networked System Laboratory](http://nsl.kumoh.ac.kr/)
+
+Networked System Laboratory\
+[Website](http://nsl.kumoh.ac.kr/)
