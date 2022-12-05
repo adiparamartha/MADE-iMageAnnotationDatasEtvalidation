@@ -21,7 +21,7 @@ class Ui_Dialog(object):
         x = 0
         Dialog.setObjectName("NSL - Dataset Validation Software (by: Adi Paramartha)")
         Dialog.resize(874, 652)
-        Dialog.setWindowIcon(QtGui.QIcon(r'D:\3D Printing\0. Dataset Project 2022\KIT.jpg'))
+        Dialog.setWindowIcon(QtGui.QIcon(r'KIT.jpg'))
 
         self.counter = -1
         self.jsonFileList = []
@@ -57,12 +57,12 @@ class Ui_Dialog(object):
         self.NSL_img = QtWidgets.QLabel(Dialog)
         self.NSL_img.setGeometry(QtCore.QRect(675, 40, 175, 31))
         self.NSL_img.setScaledContents(True)
-        self.NSL_img.setPixmap(QtGui.QPixmap(r'D:\3D Printing\0. Dataset Project 2022\logo.png'))
+        self.NSL_img.setPixmap(QtGui.QPixmap(r'logo.png'))
         self.NSL_img.setObjectName("NSL_img")     
 
         self.frame = QtWidgets.QLabel(Dialog)
         self.frame.setGeometry(QtCore.QRect(20, 120, 721, 510))
-        self.frame.setPixmap(QtGui.QPixmap(r'D:\3D Printing\0. Dataset Project 2022\background.JPG'))   
+        self.frame.setPixmap(QtGui.QPixmap(r'background.JPG'))   
         self.frame.setObjectName("frame")
         self.frame.setScaledContents(True)
         self.frame.setStyleSheet("border: 2px solid black")
@@ -393,15 +393,51 @@ class Ui_Dialog(object):
                     self.imageFileList.append(imagefile)                     
                 except Exception as e:
                     print(imagefile, "fail", e)
-        print(self.imageFileList)
+                    
+        # print(self.imageFileList)
 
         self.filename = str(fpath).split('/')[-1] + ".csv"
-        with open(self.filename, 'w', newline="") as file:
-            csvwriter = csv.writer(file) 
-            csvwriter.writerow(['number', 'filename_json', 'filename_img', 'init_status', 'annotation_x_start', 'annotation_x_stop','annotation_y_start', 'annotation_y_stop', 
-            'observed_status', 'observed_annotation','same_result'])
+        print(os.path.isfile(self.filename))   
 
-        self.show_message_box()     
+        if os.path.isfile(self.filename):
+            self.checksimilarity()
+            
+            if self.cond == QtWidgets.QMessageBox.Ok:
+                # self.filename = str(fpath).split('/')[-1] + ".csv"
+                with open(self.filename, 'w', newline="") as file:
+                    csvwriter = csv.writer(file) 
+                    csvwriter.writerow(['number', 'filename_json', 'filename_img', 'init_status', 'annotation_x_start', 'annotation_x_stop','annotation_y_start', 'annotation_y_stop', 
+                    'observed_status', 'observed_annotation','same_result'])
+                self.show_message_box() 
+    
+            else:
+                # self.filename = str(fpath).split('/')[-1] + ".csv"
+                with open(self.filename, 'r', newline="") as file:
+                    csvwriter = csv.writer(file) 
+                    lastline = file.readlines()[-1]
+                    sliced = lastline.split(',')
+                    self.counter = int(sliced[0])
+                file.close
+
+                self.show_message_box(False) 
+
+        else:
+            # self.filename = str(fpath).split('/')[-1] + ".csv"
+            with open(self.filename, 'w', newline="") as file:
+                csvwriter = csv.writer(file) 
+                csvwriter.writerow(['number', 'filename_json', 'filename_img', 'init_status', 'annotation_x_start', 'annotation_x_stop','annotation_y_start', 'annotation_y_stop', 
+                'observed_status', 'observed_annotation','same_result'])
+            self.show_message_box() 
+
+            
+
+    def checksimilarity(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
+        msg.setText("Output file with following name is already exist! Are you sure want to override it?")
+        msg.setWindowTitle("Information")
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+        self.cond = msg.exec_()
 
     def show_final_box(self):
         msg = QtWidgets.QMessageBox()
@@ -411,7 +447,7 @@ class Ui_Dialog(object):
         msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
         returnValue = msg.exec()
         if returnValue == QtWidgets.QMessageBox.Ok:
-            self.frame.setPixmap(QtGui.QPixmap(r'D:\3D Printing\0. Dataset Project 2022\background.JPG'))
+            self.frame.setPixmap(QtGui.QPixmap(r'background.JPG'))
             self.labelNumber.setText("-/-")
             self.label_folder_path.setText("-")
             self.labelStatus.setText("-")
@@ -434,8 +470,7 @@ class Ui_Dialog(object):
             self.button_separation.setDisabled(True)
             self.button_gaps.setDisabled(True)
             
-
-    def show_message_box(self):
+    def show_message_box(self, stat=True):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Information)
         if len(self.imageFileList) == 0:
@@ -447,7 +482,6 @@ class Ui_Dialog(object):
             msg.setWindowTitle("Information")
             msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
             self.toggle_annotation.setDisabled(False)
-            self.counter = -1
             self.button_normal.setDisabled(False)
             self.button_stringing.setDisabled(False)
             self.button_etc.setDisabled(False)
@@ -457,6 +491,8 @@ class Ui_Dialog(object):
             self.toggle_annotation.setDisabled(False)
             self.button_separation.setDisabled(False)
             self.button_gaps.setDisabled(False)
+            if stat == True:
+                self.counter = -1
             self.checkAnotation()
 
     def retranslateUi(self, Dialog):
