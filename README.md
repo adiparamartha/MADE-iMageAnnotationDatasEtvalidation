@@ -4,7 +4,7 @@ This project allow you to validate JSON data with annotation that associcated wi
 
 Here are several screenshot of the program:
 1. Home Screen\
-![Apps_Preview1](app_preview/apps1.png)
+![Apps_Preview1](app_preview/apps.png)
 
 2. Import Folder\
 ![Apps_Preview2](app_preview/apps1a.png)
