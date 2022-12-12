@@ -17,6 +17,7 @@ from PIL import Image as im
 import csv
 
 class Ui_Dialog(object):
+    
     def setupUi(self, Dialog):
         x = 0
         Dialog.setObjectName("NSL - Dataset Validation Software (by: Adi Paramartha)")
@@ -85,82 +86,92 @@ class Ui_Dialog(object):
         self.valueStatus.setObjectName("valueStatus")    
         self.valueStatus.setAlignment(QtCore.Qt.AlignCenter)
 
-        self.toggle_annotation = QtWidgets.QPushButton("Toggle",Dialog)
+        self.toggle_annotation = QtWidgets.QPushButton("Annotate",Dialog)
         self.toggle_annotation.setCheckable(True)
         self.toggle_annotation.setGeometry(QtCore.QRect(760, 200, 101, 62))
         self.toggle_annotation.setObjectName("toggle_annotation")
         self.toggle_annotation.setStyleSheet("background-color: rgba(0,0, 255, 50);  border: 2px solid blue;")
         self.toggle_annotation.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.toggle_annotation.clicked.connect(self.changeAnotate)
+        self.toggle_annotation.clicked.connect(self.changeAnotate)       
         self.toggle_annotation.setDisabled(True)
 
-        self.button_blowout = QtWidgets.QPushButton(Dialog)
+
+        self.button_blowout = QtWidgets.QPushButton("Blow Out (1)",Dialog)
         self.button_blowout.setGeometry(QtCore.QRect(760, 280, 101, 31))
         self.button_blowout.setAutoFillBackground(True)
         self.button_blowout.setObjectName("button_blowout")
         self.button_blowout.setStyleSheet("background-color: rgba(255,0, 0, 20);  border: 2px solid red;")
         self.button_blowout.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.button_blowout.setShortcut("1") 
 
-        self.button_stringing = QtWidgets.QPushButton(Dialog)
+        self.button_stringing = QtWidgets.QPushButton("Stringing (2)",Dialog)
         self.button_stringing.setGeometry(QtCore.QRect(760, 320, 101, 31))
         self.button_stringing.setAutoFillBackground(True)
         self.button_stringing.setObjectName("button_stringing")
         self.button_stringing.setStyleSheet("background-color: rgba(255,0, 0, 20);  border: 2px solid red;")
         self.button_stringing.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.button_stringing.setShortcut("2") 
         
-        self.button_lines = QtWidgets.QPushButton(Dialog)
+        self.button_lines = QtWidgets.QPushButton("Lines of Print (3)",Dialog)
         self.button_lines.setGeometry(QtCore.QRect(760, 360, 101, 31))
         self.button_lines.setObjectName("button_lines")
         self.button_lines.setStyleSheet("background-color: rgba(255,0, 0, 20);  border: 2px solid red;")  
         self.button_lines.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.button_lines.setShortcut("3") 
 
-        self.button_etc = QtWidgets.QPushButton(Dialog)
+        self.button_etc = QtWidgets.QPushButton("Etc_Print Error (4)",Dialog)
         self.button_etc.setGeometry(QtCore.QRect(760, 400, 101, 31))
         self.button_etc.setObjectName("button_etc")
         self.button_etc.setStyleSheet("background-color: rgba(255,0, 0, 20);  border: 2px solid red;")
         self.button_etc.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.button_etc.setShortcut("4") 
 
-        self.button_warping = QtWidgets.QPushButton(Dialog)
+        self.button_warping = QtWidgets.QPushButton("Warping (5)",Dialog)
         self.button_warping.setGeometry(QtCore.QRect(760, 440, 101, 31))
         self.button_warping.setObjectName("button_warping")
         self.button_warping.setStyleSheet("background-color: rgba(255,0, 0, 20);  border: 2px solid red;")
         self.button_warping.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))     
+        self.button_warping.setShortcut("5") 
 
-        self.button_gaps = QtWidgets.QPushButton(Dialog)
+        self.button_gaps = QtWidgets.QPushButton("Gaps (6)",Dialog)
         self.button_gaps.setGeometry(QtCore.QRect(760, 480, 101, 31))
         self.button_gaps.setObjectName("button_gaps")
         self.button_gaps.setStyleSheet("background-color: rgba(255,0, 0, 20);  border: 2px solid red;")
         self.button_gaps.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.button_gaps.setShortcut("6") 
 
-        self.button_separation = QtWidgets.QPushButton(Dialog)
+        self.button_separation = QtWidgets.QPushButton("Separation (7)",Dialog)
         self.button_separation.setGeometry(QtCore.QRect(760, 520, 101, 31))
         self.button_separation.setObjectName("button_separation")
         self.button_separation.setStyleSheet("background-color: rgba(255,0, 0, 20);  border: 2px solid red;")
         self.button_separation.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.button_separation.setShortcut("7") 
 
-        self.button_normal = QtWidgets.QPushButton(Dialog)
+        self.button_normal = QtWidgets.QPushButton("Normal (->)",Dialog)
         self.button_normal.setGeometry(QtCore.QRect(760, 570, 101, 31))
         self.button_normal.setObjectName("button_normal")
         self.button_normal.setStyleSheet("background-color: rgba(0, 255, 0, 20); border: 2px solid green;")
         self.button_normal.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.button_normal.setShortcut("Right") 
 
-        self.button_revert = QtWidgets.QPushButton(Dialog)
+        self.button_revert = QtWidgets.QPushButton("Revert (<-)", Dialog)
         self.button_revert.setGeometry(QtCore.QRect(760, 610, 101, 20))
         self.button_revert.setObjectName("button_revert")
         self.button_revert.setStyleSheet("background-color: rgba(255,255,0,100); border: 2px solid rgb(246,190,0);")
         self.button_revert.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.button_revert.setShortcut("Left") 
+
+
         self.button_revert.clicked.connect(self.revert)           
-
         self.button_select_folder.clicked.connect(self.selectFolder)
-
         self.button_normal.clicked.connect(self.clickNormal)
         self.button_gaps.clicked.connect(self.clickGaps)
+        self.button_etc.clicked.connect(self.clickEtc)
         self.button_blowout.clicked.connect(self.clickBlowout)
         self.button_stringing.clicked.connect(self.clickStringing)
         self.button_lines.clicked.connect(self.clickLinesofPrint)
         self.button_warping.clicked.connect(self.clickWarping)
         self.button_separation.clicked.connect(self.clickSeparation)
-        self.button_etc.clicked.connect(self.clickEtc)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -279,6 +290,9 @@ class Ui_Dialog(object):
         self.button_gaps.setDisabled(False)
         self.rerun=False
         self.checkAnotation(False)
+        self.anotate_status = 0
+        self.toggle_annotation.setText("Correct Annotation")
+        self.toggle_annotation.setStyleSheet("background-color: rgba(0,0, 255, 50);  border: 2px solid blue;")
 
     def alert_box(self):
         msg = QtWidgets.QMessageBox()
@@ -316,12 +330,16 @@ class Ui_Dialog(object):
             if(annot_x == '-'):
                 self.resetstyle()
                 self.data.extend(['-', '-', '-', '-', '-'])
+                self.toggle_annotation.setText("No Annotation")
+                self.toggle_annotation.setStyleSheet("background-color: rgba(255,0, 0, 50);  border: 2px solid orange;")
                 self.frame.setPixmap(QtGui.QPixmap(str(Path(self.imageFileList[self.counter]))))
                 self.valueStatus.setText("No Error")
                 self.valueStatus.setStyleSheet("font-weight: bold; color: black")
                 self.button_normal.setStyleSheet("font-weight: bold; background-color: rgba(0, 255, 0, 20); border: 2px solid green;")
+                self.toggle_annotation.setDisabled(True)
                 
             else:
+                self.toggle_annotation.setDisabled(False)
                 annot_y = data['annotation_info']['Annotations[]_y']
                 annot_width = int(float(data['annotation_info']['Annotations[]_width']))
                 annot_height = int(float(data['annotation_info']['Annotations[]_height']))
@@ -407,7 +425,7 @@ class Ui_Dialog(object):
                 with open(self.filename, 'w', newline="") as file:
                     csvwriter = csv.writer(file) 
                     csvwriter.writerow(['number', 'filename_json', 'filename_img', 'init_status', 'annotation_x_start', 'annotation_x_stop','annotation_y_start', 'annotation_y_stop', 
-                    'observed_status', 'observed_annotation','same_result'])
+                    'observed_status', 'observed_annotation_wrong','is_same_result'])
                 self.show_message_box() 
     
             else:
@@ -426,7 +444,7 @@ class Ui_Dialog(object):
             with open(self.filename, 'w', newline="") as file:
                 csvwriter = csv.writer(file) 
                 csvwriter.writerow(['number', 'filename_json', 'filename_img', 'init_status', 'annotation_x_start', 'annotation_x_stop','annotation_y_start', 'annotation_y_stop', 
-                'observed_status', 'observed_annotation','same_result'])
+                'observed_status', 'observed_annotation_wrong','is_same_result'])
             self.show_message_box() 
 
             
@@ -498,25 +516,26 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "NSL - Dataset Validation Software (by: Adi Paramartha)"))
-        self.button_normal.setText(_translate("Dialog", "Normal"))
-        self.button_warping.setText(_translate("Dialog", "Warping"))
-        self.button_etc.setText(_translate("Dialog", "Etc_Print Error"))
-        self.button_lines.setText(_translate("Dialog", "Lines of Print"))
+        # self.button_normal.setText(_translate("Dialog", "Normal"))
+        # self.button_warping.setText(_translate("Dialog", "Warping"))
+        # self.button_etc.setText(_translate("Dialog", "Etc_Print Error"))
+        # self.button_lines.setText(_translate("Dialog", "Lines of Print"))
         self.label.setText(_translate("Dialog", "File Name"))
         self.label_image_name.setText(_translate("Dialog", "-"))
         self.labelStatus.setText(_translate("Dialog", "STATUS"))
         self.labelNumber.setText(_translate("Dialog", "-/-"))
-        self.button_revert.setText(_translate("Dialog", "Revert"))
+        self.label_folder_path.setText(_translate("Dialog", "-"))
+        self.button_select_folder.setText(_translate("Dialog", "Select Folder"))        
         self.valueStatus.setText(_translate("Dialog", "-"))
         self.label_json_name.setText(_translate("Dialog", "-"))
-        self.button_stringing.setText(_translate("Dialog", "Stringing"))
-        self.button_gaps.setText(_translate("Dialog", "Gaps"))
-        self.button_separation.setText(_translate("Dialog", "Separation"))
-        self.button_blowout.setText(_translate("Dialog", "Blow Out"))
-        self.label_folder_path.setText(_translate("Dialog", "-"))
-        self.button_select_folder.setText(_translate("Dialog", "Select Folder"))
-        self.toggle_annotation.setText(_translate("Dialog", "Annotation"))
-        
+        # self.button_revert.setText(_translate("Dialog", "Revert"))
+        # self.button_stringing.setText(_translate("Dialog", "Stringing"))
+        # self.button_gaps.setText(_translate("Dialog", "Gaps"))
+        # self.button_separation.setText(_translate("Dialog", "Separation"))
+        # self.button_blowout.setText(_translate("Dialog", "Blow Out"))
+
+        # self.toggle_annotation.setText(_translate("Dialog", "Annotation"))
+
 
 if __name__ == "__main__":
     import sys
